@@ -5,6 +5,8 @@ export const sendToken = (user, statusCode, res, message)=>{
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
         httpOnly: true, 
+        secure: true,
+        sameSite: "None"
     };
     console.log('creating cookie');
     res.status(statusCode).cookie("token", token, options).json({
@@ -13,4 +15,5 @@ export const sendToken = (user, statusCode, res, message)=>{
         message,
         token,
     });
+    console.log(res.cookie);
 };
