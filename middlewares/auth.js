@@ -4,13 +4,8 @@ import jwt from "jsonwebtoken"
 import { User } from "../models/userSchema.js"
 
 export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
-    console.log('Below is request');
-    console.log(req);
-    console.log('below is cookies : ');
-    console.log(req.cookies);
     const { token } = req.cookies;
     if(!token){
-        console.log('Token is missing');
         return next(new ErrorHandler("User is not authenticated.", 400));
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
