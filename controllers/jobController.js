@@ -1,7 +1,7 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler, { errorMiddleware } from "../middlewares/error.js";
 import { Job } from "../models/jobSchema.js";
-import { sync } from "touch";
+
 
 export const postJob = catchAsyncErrors(async(req,res,next)=>{
     if (!req.body) {
